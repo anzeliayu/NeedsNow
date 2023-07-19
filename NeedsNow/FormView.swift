@@ -11,7 +11,7 @@ struct FormView: View {
     var body: some View {
         
         VStack {
-            
+            Text("this is the form")
         }
             
     }
