@@ -18,36 +18,41 @@ struct ContentView: View {
              .overlay (
                 VStack {
                     Image("logo")
+                        .offset(y: 60)
+                        .padding()
+                        .padding(.top, 24.0)
                     Text("Welcome to NeedsNow!")
                         .font(.largeTitle)
-                        .fontWeight(.bold)
+                        .fontWeight(.heavy)
                         .padding()
+                        .offset(y:10)
                     
                     Button {
                         navigateToForm = true
                     } label: {
                         Text("New Form")
-                            .fontWeight(.semibold)
+                            .fontWeight(.bold)
                             .foregroundColor(Color.eggplant)
-                            .controlSize(
                     }
                     .navigationDestination(isPresented: $navigateToForm) {
-                        FormView()
+                        FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", item: "", quantity: "", neededBy: "", contact: "", other: ""))
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(Color.tan)
-                    .padding(.top, 30.0)
+                    .padding(.top, 5.0)
                     .padding()
+                    .controlSize(.large)
                     
                     Button {
                         navigateToCommunity = true
                     } label: {
                         Text("Community")
-                            .fontWeight(.semibold)
+                            .fontWeight(.bold)
                             .foregroundColor(Color.eggplant)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(Color.brightPink)
+                    .controlSize(.large)
                     .navigationDestination(isPresented: $navigateToCommunity) {
                         CommunityView(posts: Post.sampleData)
                     }

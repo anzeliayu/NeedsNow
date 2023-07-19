@@ -10,15 +10,10 @@ import SwiftUI
 struct expandedView: View {
     
     let card: Post
-    
-    
+    @State private var sliderVal = 0.0
     var body: some View {
-       
-            
-            
+        VStack {
             List {
-                
-                
                 Section(header: Text("Information")){
                     Text(card.orgName)
                     Text("Address: " + card.streetAddress)
@@ -30,19 +25,21 @@ struct expandedView: View {
                 
                 Section(header: Text("Items Info")) {
                     Text(card.item + ": " + String(card.quantity))
-                    
+                    /*Slider(
+                        value: $sliderVal,
+                        in: 0...Double(card.quantity),
+                        step: 1
+                    )*/
+                    Text(String(format: ".0f", sliderVal))
                 }
-                
                 .listRowBackground((Color.offWhite))
                 
-                
-                
             }
-        
             .background(Color.lightGreen)
-            
             .scrollContentBackground(.hidden)
-        
+            
+            
+        }
         
     }
     

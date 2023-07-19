@@ -18,19 +18,12 @@ struct CommunityView: View {
                 }
                 .listRowBackground(Color.offWhite)
                 
-                
-                
-                
-                
             }
             .background(Color.lightGreen)
             .scrollContentBackground(.hidden)
          
         }
      
-        
-        
-        
     }
 }
 
