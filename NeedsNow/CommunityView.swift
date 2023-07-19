@@ -12,14 +12,25 @@ struct CommunityView: View {
     
     var body: some View {
         NavigationStack {
-            List(posts, id: \.orgName) { post in
-                PostCard(post: post)
-                    .listRowBackground(Color.lightGreen)
-                    
+            List(posts) { post in
+                NavigationLink(destination: expandedView(card: post)){
+                    PostCard(post: post)
+                }
+                .listRowBackground(Color.offWhite)
+                
+                
+                
                 
                 
             }
+            .background(Color.lightGreen)
+            .scrollContentBackground(.hidden)
+         
         }
+     
+        
+        
+        
     }
 }
 
