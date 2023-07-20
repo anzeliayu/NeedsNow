@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct FormView: View {
-    var allPosts: [Post]
+    
+    
     @State var newPost: Post
     @State var orgName = ""
     @State var streetAddress = ""
     @State var city = ""
     @State var state = ""
-    @State var item = ""
-    @State var items = [item]
+    
+    @State var items = [""]
     @State var quantity = ""
     @State var neededBy = ""
     @State var contact = ""
     @State var other = ""
     
-    
+    @State var addItem = false
     var body: some View {
         ScrollView {
             ZStack{
@@ -40,7 +41,7 @@ struct FormView: View {
                             
                         Spacer()
                     }
-                    //}
+                    
                     //Org details
                     Group {
                         //
@@ -74,32 +75,49 @@ struct FormView: View {
                                     .frame(height: 40.0)
                                 TextField("State", text: $state)
                                     .padding(.leading)
-                                    .frame(width: 100.0, height: 30.0)
+                                    .frame(width: 90.0, height: 30.0)
                                     .border(Color.black, width: 1)
                                     .background(Color.offWhite)
-                                    .padding(.leading)
+                                    .padding()
                                     .frame(height: 40.0)
                             }
                         }
-                        HStack{
+                        
                             Group {
-                                TextField("Items needed", text: $item)
-                                    .padding(.leading)
-                                    .frame(width: 200.0, height: 30.0)
-                                    .border(Color.black, width: 1)
-                                    .background(Color.offWhite)
-                                    .padding(.leading)
-                                    .frame(height: 40.0)
+                                VStack {
+                                    ForEach(items.indices, id: \.self) { index in
+                                        
+                                        TextField("Item needed, Quantity", text: $items[index])
+                                            .padding(.leading)
+                                            .frame(width: 320.0, height: 30.0)
+                                            .border(Color.black, width: 1)
+                                            .background(Color.offWhite)
+                                            .padding(.leading)
+                                            .frame(height: 40.0)
+                                        
+                                        
+                                        
+                                    }
+                                    
+                                    Button(action: {
+                                        items.append("")
+                                    }) {
+                                        Image(systemName: "plus.circle.fill")
+                                    }
+                                    //.disabled(the recent textfield var.isEmpty)
+                                }
+                                
+                                
                                 //quantity details
-                                TextField("Quantity", text: $quantity)
+                                /*TextField("Quantity", text: $quantity)
                                     .padding(.leading)
                                     .frame(width: 100.0, height: 30.0)
                                     .border(Color.black, width: 1)
                                     .background(Color.offWhite)
                                     .padding(.leading)
-                                    .frame(height: 40.0)
+                                    .frame(height: 40.0)*/
                             } 
-                        }
+                        
                         
     //                    var isTrue: Bool
     //                    isTrue = false
@@ -153,12 +171,14 @@ struct FormView: View {
                         .tint(.tan)
                         .foregroundColor(.eggplant)
                         Button("Submit") {
-                            allPosts.append(Post(orgName: <#T##String#>, streetAddress: <#T##String#>, city: <#T##String#>, state: <#T##String#>, items: <#T##[item]#>, neededBy: <#T##String#>, contact: <#T##String#>, other: <#T##String#>))
+                            
+                            newPost = Post(orgName: orgName, streetAddress: streetAddress, city: city, state: state, items: items, neededBy: neededBy, contact: contact, other: other)
+                            
                             orgName = ""
                             streetAddress = ""
                             city = ""
                             state = ""
-                            item = ""
+                            items.removeAll()
                             quantity = ""
                             neededBy = ""
                             contact = ""
@@ -186,8 +206,10 @@ struct FormView: View {
     
 }
 
+
+
 struct FormView_Previews: PreviewProvider {
     static var previews: some View {
-        FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", item: "", quantity: "", neededBy: "", contact: "", other: ""))
+        FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))
     }
 }

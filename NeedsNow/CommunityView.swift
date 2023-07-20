@@ -13,7 +13,7 @@ struct CommunityView: View {
     var body: some View {
         NavigationStack {
             List(posts) { post in
-                NavigationLink(destination: expandedView(card: post)){
+                NavigationLink(destination: expandedView(card: post)) {
                     PostCard(post: post)
                 }
                 .listRowBackground(Color.offWhite)

@@ -24,7 +24,9 @@ struct expandedView: View {
                 .listRowBackground((Color.offWhite))
                 
                 Section(header: Text("Items Info")) {
-                    Text(card.item + ": " + String(card.quantity))
+                    ForEach(card.items, id: \.self) { item in
+                        Text(item)
+                    }
                     /*Slider(
                         value: $sliderVal,
                         in: 0...Double(card.quantity),

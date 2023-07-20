@@ -35,7 +35,7 @@ struct ContentView: View {
                             .foregroundColor(Color.eggplant)
                     }
                     .navigationDestination(isPresented: $navigateToForm) {
-                        FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", item: "", quantity: "", neededBy: "", contact: "", other: ""))
+                        FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [String](), neededBy: "", contact: "", other: ""))
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(Color.tan)
