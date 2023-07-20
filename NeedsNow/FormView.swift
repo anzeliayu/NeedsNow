@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct FormView: View {
-    
-    
     @State var newPost: Post
     @State var orgName = ""
     @State var streetAddress = ""
@@ -22,12 +20,14 @@ struct FormView: View {
     @State var contact = ""
     @State var other = ""
     
+    @State private var navigateToHome = false
     @State var addItem = false
     var body: some View {
+        
         ScrollView {
+            
             ZStack{
-                Color.tan
-                    .ignoresSafeArea()
+                
                 VStack(alignment: .leading, spacing:20){
                     
                     HStack{
@@ -162,14 +162,33 @@ struct FormView: View {
                     Spacer()
                     HStack{
                         Spacer()
+                        Button {
+                            navigateToHome = true
+                        } label: {
+                            Text("Cancel")
+                                .fontWeight(.semibold)
+                        }
+                        .navigationDestination(isPresented: $navigateToHome) {
+                            ContentView()
+                        }
+                        
+                        .navigationBarBackButtonHidden(true)
+                        .font(.title2)
+                        .buttonStyle(.borderedProminent)
+                        .tint(Color.tan)
+                        .foregroundColor(.eggplant)
+                        .padding()
+                        /*
                         Button("Cancel") {
-                            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                        
                         }
                         .frame(width: 100.0)
                         .font(.title2)
                         .buttonStyle(.borderedProminent)
                         .tint(.tan)
                         .foregroundColor(.eggplant)
+                         
+                         */
                         Button("Submit") {
                             
                             newPost = Post(orgName: orgName, streetAddress: streetAddress, city: city, state: state, items: items, neededBy: neededBy, contact: contact, other: other)
@@ -178,13 +197,16 @@ struct FormView: View {
                             streetAddress = ""
                             city = ""
                             state = ""
-                            items.removeAll()
+                            items = [""]
                             quantity = ""
                             neededBy = ""
                             contact = ""
                             other = ""
+                            
+                            Post.sampleData.append(newPost)
                         }
                         .font(.title2)
+                        .fontWeight(.semibold)
                         .buttonStyle(.borderedProminent)
                         .tint(.brightPink)
                         .foregroundColor(.eggplant)
@@ -201,6 +223,8 @@ struct FormView: View {
                 
             }
         }
+        .background(Color.tan)
+        .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
         
     }
     

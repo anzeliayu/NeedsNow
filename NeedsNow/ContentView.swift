@@ -29,6 +29,7 @@ struct ContentView: View {
                     
                     Button {
                         navigateToForm = true
+                        navigateToForm = true
                     } label: {
                         Text("New Form")
                             .fontWeight(.bold)

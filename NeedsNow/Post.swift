@@ -49,9 +49,9 @@ struct Post: Identifiable {
 }
 
 extension Post {
-    static let sampleData: [Post] =
+    static public var sampleData: [Post] =
     [
-        Post(orgName: "Lynnwood Food Bank", streetAddress: "123 StreetName", city: "Lynnwood", state: "WA", items: ["macaroni, 6"], neededBy: "7/30/2023", contact: "425-294-1949", other: "kraft mac and cheese"),
+        Post(orgName: "Lynnwood Food Bank", streetAddress: "123 StreetName", city: "Lynnwood", state: "WA", items: ["macaroni, 6", "canned peaches, 10"], neededBy: "7/30/2023", contact: "425-294-1949", other: "kraft mac and cheese"),
         Post(orgName: "Seattle Humane", streetAddress: "216th Ave NE", city: "Seattle", state: "WA", items: ["blanket, 10"], neededBy: "4/21/2023", contact: "423-234-1129", other: "dog food and toys")
         
     ]
