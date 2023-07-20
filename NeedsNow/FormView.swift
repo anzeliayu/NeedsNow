@@ -214,8 +214,9 @@ struct FormView: View {
                     }
                     Spacer()
                     //end of Vstack
-                } .background(Rectangle()
-                    .foregroundColor(.lightGreen))
+                }
+                .background(Rectangle()
+                .foregroundColor(.lightGreen))
                 .cornerRadius(15)
                 .shadow(radius: 15)
                 .padding()

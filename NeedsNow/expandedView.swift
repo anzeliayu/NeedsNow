@@ -12,37 +12,57 @@ struct expandedView: View {
     let card: Post
     @State private var sliderVal = 0.0
     var body: some View {
-        VStack {
-            List {
-                Section(header: Text("Information")){
-                    Text(card.orgName)
-                    Text("Address: " + card.streetAddress)
-                    Text("Needed By: " + card.neededBy)
-                    Text("Contact: " + card.contact)
-                    Text("Other Info: " + card.other)
-                }
-                .listRowBackground((Color.offWhite))
+        ZStack {
+            
+            VStack {
                 
-                Section(header: Text("Items Info")) {
-                    ForEach(card.items, id: \.self) { item in
-                        Text(item)
+                List {
+                    Section(header: Text("Information")){
+                        Text(card.orgName)
+                        Text("Address: " + card.streetAddress)
+                        Text("Needed By: " + card.neededBy)
+                        Text("Contact: " + card.contact)
+                        Text("Other Info: " + card.other)
+                    }
+                    .listRowBackground((Color.offWhite))
+                    
+                    Section(header: Text("Items Info")) {
+                        ForEach(card.items, id: \.self) { item in
+                            Text(item)
+                            
+                        }
+                        /*Slider(
+                         value: $sliderVal,
+                         in: 0...Double(card.quantity),
+                         step: 1
+                         )*/
                         
                     }
-                    /*Slider(
-                        value: $sliderVal,
-                        in: 0...Double(card.quantity),
-                        step: 1
-                    )*/
+                    .listRowBackground((Color.offWhite))
                     
                 }
-                .listRowBackground((Color.offWhite))
+                .background(Color.lightGreen)
+                .scrollContentBackground(.hidden)
                 
+                
+                Button("Fulfill"){
+                    
+                    // get id of this post
+                    // find the index of that post from the posts list (sampleData)
+                    // remove the post from sampleData
+                
+                    let postIndex = findPostIndex(post: card)
+                    Post.sampleData.remove(at: postIndex)
+                    
+                }
+                .font(.title2)
+                .foregroundColor(.eggplant)
+                .fontWeight(.semibold)
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
             }
-            .background(Color.lightGreen)
-            .scrollContentBackground(.hidden)
-            
-            
         }
+        .background(Color.lightGreen)
         
     }
     
@@ -50,7 +70,17 @@ struct expandedView: View {
 
 
 
-
+func findPostIndex(post: Post) -> Int {
+    
+    for n in (0..<Post.sampleData.count) {
+        if Post.sampleData[n].id == post.id {
+            return n
+        }
+        
+    }
+    return -1
+    
+}
 
 
 
