@@ -59,9 +59,24 @@ struct ContentView: View {
                     }
                     Spacer()
                     
+                    
                 }
             )
+             .toolbar{
+                 NavigationLink(destination: ContentView()) {
+                     Text("Home")
+                 }
+                 NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
+                     Text("Form")
+                 }
+                 NavigationLink(destination: CommunityView(posts: Post.sampleData)){
+                     Text("Community")
+                 }
+                                
+             }
+
         }
+        
     }
 }
 

@@ -223,6 +223,20 @@ struct FormView: View {
                 
                 
             }
+            .toolbar{
+                NavigationLink(destination: ContentView()) {
+                    Text("Home")
+                }
+                NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
+                    Text("Form")
+                }
+                NavigationLink(destination: CommunityView(posts: Post.sampleData)){
+                    Text("Community")
+                }
+                               
+            }
+
+            
         }
         .background(Color.tan)
         .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
