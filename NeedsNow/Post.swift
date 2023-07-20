@@ -7,25 +7,32 @@
 
 import Foundation
 
+struct item {
+    var itemName: String
+    var itemQuantity: String
+}
+
 struct Post: Identifiable {
     let id = UUID()
     var orgName: String
     var streetAddress: String
     var city: String
     var state: String
-    var item: String
-    var quantity: String
+    var items: [item]
+//    var item: String
+//    var quantity: String
     var neededBy: String
     var contact: String
     var other: String
     
-    init(orgName: String, streetAddress: String, city: String, state: String, item: String, quantity: String, neededBy: String, contact: String, other: String) {
+    init(orgName: String, streetAddress: String, city: String, state: String, items: [item], neededBy: String, contact: String, other: String) {
         self.orgName = orgName
         self.streetAddress = streetAddress
         self.city = city
         self.state = state
-        self.item = item
-        self.quantity = quantity
+        self.items = items
+//        self.item = item
+//        self.quantity = quantity
         self.neededBy = neededBy
         self.contact = contact
         self.other = other

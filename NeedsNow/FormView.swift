@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct FormView: View {
+    var allPosts: [Post]
     @State var newPost: Post
     @State var orgName = ""
     @State var streetAddress = ""
     @State var city = ""
     @State var state = ""
     @State var item = ""
+    @State var items = [item]
     @State var quantity = ""
     @State var neededBy = ""
     @State var contact = ""
@@ -96,7 +98,7 @@ struct FormView: View {
                                     .background(Color.offWhite)
                                     .padding(.leading)
                                     .frame(height: 40.0)
-                            }
+                            } 
                         }
                         
     //                    var isTrue: Bool
@@ -151,7 +153,7 @@ struct FormView: View {
                         .tint(.tan)
                         .foregroundColor(.eggplant)
                         Button("Submit") {
-                        
+                            allPosts.append(Post(orgName: <#T##String#>, streetAddress: <#T##String#>, city: <#T##String#>, state: <#T##String#>, items: <#T##[item]#>, neededBy: <#T##String#>, contact: <#T##String#>, other: <#T##String#>))
                             orgName = ""
                             streetAddress = ""
                             city = ""
