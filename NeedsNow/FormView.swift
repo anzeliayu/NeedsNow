@@ -165,7 +165,7 @@ struct FormView: View {
                         Button {
                             navigateToHome = true
                         } label: {
-                            Text("Cancel")
+                            Text("Back")
                                 .fontWeight(.semibold)
                         }
                         .navigationDestination(isPresented: $navigateToHome) {

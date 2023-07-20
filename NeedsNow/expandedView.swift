@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct expandedView: View {
-    
+    @State var navigateToCommunity = false
     let card: Post
     @State private var sliderVal = 0.0
     var body: some View {
@@ -45,14 +45,20 @@ struct expandedView: View {
                 .scrollContentBackground(.hidden)
                 
                 
-                Button("Fulfill"){
-                    
-                    // get id of this post
-                    // find the index of that post from the posts list (sampleData)
-                    // remove the post from sampleData
-                
+                Button(){
+                    navigateToCommunity = true
                     let postIndex = findPostIndex(post: card)
+                    print(postIndex)
                     Post.sampleData.remove(at: postIndex)
+                    
+                    
+                } label: {
+                    Text("Fulfill")
+                    
+                }
+                .navigationDestination(isPresented: $navigateToCommunity)
+                {
+                    CommunityView(posts: Post.sampleData)
                     
                 }
                 .font(.title2)
@@ -60,6 +66,20 @@ struct expandedView: View {
                 .fontWeight(.semibold)
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
+                
+                /*
+                 
+                 Button {
+                     navigateToForm = true
+                     navigateToForm = true
+                 } label: {
+                     Text("New Form")
+                         .fontWeight(.bold)
+                         .foregroundColor(Color.eggplant)
+                 }
+                 .navigationDestination(isPresented: $navigateToForm) {
+                     FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [String](), neededBy: "", contact: "", other: ""))
+                 }*/
             }
         }
         .background(Color.lightGreen)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CommunityView: View {
-    let posts: [Post]
+    @State var posts: [Post]
     
     var body: some View {
         NavigationStack {
@@ -19,6 +19,7 @@ struct CommunityView: View {
                 .listRowBackground(Color.offWhite)
                 
             }
+
             .background(Color.lightGreen)
             .scrollContentBackground(.hidden)
          
