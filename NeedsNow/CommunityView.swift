@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CommunityView: View {
-    @State var posts: [Post]
+    @Binding var posts: [Post]
     
     var body: some View {
         NavigationStack {
@@ -25,15 +25,18 @@ struct CommunityView: View {
          
         }
         .toolbar{
-            NavigationLink(destination: ContentView()) {
-                Image(systemName: "house.fill" )
+            ToolbarItemGroup(placement: .status) {
+                NavigationLink(destination: ContentView()) {
+                    Image(systemName: "house.fill" )
+                }
+                NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
+                    Text("Form")
+                }
+                NavigationLink(destination: CommunityView(posts: .constant(Post.sampleData))){
+                    Text("Community")
+                }
             }
-            NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
-                Text("Form")
-            }
-            NavigationLink(destination: CommunityView(posts: Post.sampleData)){
-                Text("Community")
-            }
+
         }
         
         .navigationBarBackButtonHidden(true)
@@ -45,7 +48,7 @@ struct CommunityView: View {
 
 struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityView(posts: Post.sampleData )
+        CommunityView(posts: .constant(Post.sampleData))
     }
 }
 

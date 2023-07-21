@@ -55,7 +55,7 @@ struct ContentView: View {
                     .tint(Color.brightPink)
                     .controlSize(.large)
                     .navigationDestination(isPresented: $navigateToCommunity) {
-                        CommunityView(posts: Post.sampleData)
+                        CommunityView(posts: .constant(Post.sampleData))
                     }
                     Spacer()
                     
@@ -63,15 +63,16 @@ struct ContentView: View {
                 }
             )
              .toolbar{
-                
-                 NavigationLink(destination: ContentView()) {
-                     Image(systemName: "house.fill" )
-                 }
-                 NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
-                     Text("Form")
-                 }
-                 NavigationLink(destination: CommunityView(posts: Post.sampleData)){
-                     Text("Community")
+                 ToolbarItemGroup(placement: .status) {
+                     NavigationLink(destination: ContentView()) {
+                         Image(systemName: "house.fill" )
+                     }
+                     NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
+                         Text("Form")
+                     }
+                     NavigationLink(destination: CommunityView(posts: .constant(Post.sampleData))){
+                         Text("Community")
+                     }
                  }
              }
              .navigationBarBackButtonHidden(true)

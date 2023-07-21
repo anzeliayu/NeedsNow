@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct expandedView: View {
-    @State var navigateToCommunity = false
+    @State var navigateToHome = false
     let card: Post
     @State private var sliderVal = 0.0
     var body: some View {
@@ -46,7 +46,8 @@ struct expandedView: View {
                 
                 
                 Button(){
-                    navigateToCommunity = true
+                    navigateToHome = true
+                    
                     let postIndex = findPostIndex(post: card)
                     print(postIndex)
                     Post.sampleData.remove(at: postIndex)
@@ -56,9 +57,9 @@ struct expandedView: View {
                     Text("Fulfill")
                     
                 }
-                .navigationDestination(isPresented: $navigateToCommunity)
+                .navigationDestination(isPresented: $navigateToHome)
                 {
-                    CommunityView(posts: Post.sampleData)
+                    ContentView()
                     
                 }
                 .font(.title2)
@@ -86,16 +87,19 @@ struct expandedView: View {
         .background(Color.lightGreen)
         
         .toolbar{
-            NavigationLink(destination: ContentView()) {
-                Image(systemName: "house.fill")
+            ToolbarItemGroup(placement: .status) {
+                NavigationLink(destination: ContentView()) {
+                    Image(systemName: "house.fill")
+                }
+                NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
+                    Text("Form")
+                }
+                NavigationLink(destination: CommunityView(posts: .constant(Post.sampleData))){
+                    Text("Community")
+                }
             }
-            NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
-                Text("Form")
-            }
-            NavigationLink(destination: CommunityView(posts: Post.sampleData)){
-                Text("Community")
-            }
-                           
+
+                    
         }
         
 

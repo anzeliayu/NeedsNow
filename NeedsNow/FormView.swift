@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FormView: View {
+    @State private var submitForm = false
+    @State var testPost = Post.sampleData
     @State var newPost: Post
     @State var orgName = ""
     @State var streetAddress = ""
@@ -183,6 +185,7 @@ struct FormView: View {
                          
                          */
                         Button("Submit") {
+                            submitForm = true
                             
                             newPost = Post(orgName: orgName, streetAddress: streetAddress, city: city, state: state, items: items, neededBy: neededBy, contact: contact, other: other)
                             
@@ -203,11 +206,15 @@ struct FormView: View {
                         .buttonStyle(.borderedProminent)
                         .tint(.brightPink)
                         .foregroundColor(.eggplant)
+                        .navigationDestination(isPresented: $submitForm) {
+                            ContentView()
+                        }
                         Spacer()
                     }
                     Spacer()
                     //end of Vstack
                 }
+                
                 .background(Rectangle()
                 .foregroundColor(.lightGreen))
                 .cornerRadius(15)
@@ -215,18 +222,20 @@ struct FormView: View {
                 .padding()
                 
                 
+                
             }
             .toolbar{
-                NavigationLink(destination: ContentView()) {
-                    Image(systemName: "house.fill" )
+                ToolbarItemGroup(placement: .status) {
+                    NavigationLink(destination: ContentView()) {
+                        Image(systemName: "house.fill" )
+                    }
+                    NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
+                        Text("Form")
+                    }
+                    NavigationLink(destination: CommunityView(posts: $testPost)){
+                        Text("Community")
+                    }
                 }
-                NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
-                    Text("Form")
-                }
-                NavigationLink(destination: CommunityView(posts: Post.sampleData)){
-                    Text("Community")
-                }
-                               
             }
             .toolbarBackground(
                Color.offWhite,
