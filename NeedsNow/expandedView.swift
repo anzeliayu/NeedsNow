@@ -85,22 +85,20 @@ struct expandedView: View {
         }
         
         .background(Color.lightGreen)
-        
+        /*
         .toolbar{
             ToolbarItemGroup(placement: .status) {
                 NavigationLink(destination: ContentView()) {
-                    Image(systemName: "house.fill")
+                    Text("Home").foregroundColor(.eggplant)
                 }
                 NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
-                    Text("Form")
+                    Text("New Post").foregroundColor(.eggplant)
                 }
                 NavigationLink(destination: CommunityView(posts: .constant(Post.sampleData))){
-                    Text("Community")
+                    Text("Community").foregroundColor(.eggplant)
                 }
             }
-
-                    
-        }
+        }*/
         
 
         

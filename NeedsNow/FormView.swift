@@ -31,8 +31,9 @@ struct FormView: View {
                 VStack(alignment: .leading, spacing:20){
                     HStack{
                         Spacer()
-                            .frame(width: 125.0, height: 100.0)
-                        Text("Sign Up")
+                            //.frame(width: 125.0, height: 100.0)
+                        Text("New Post")
+                            .padding(.top)
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .multilineTextAlignment(.center)
@@ -41,6 +42,20 @@ struct FormView: View {
                     }
                     //Org details
                     Group {
+                        Button{
+                            orgName = ""
+                            streetAddress = ""
+                            city = ""
+                            state = ""
+                            items = [""]
+                            quantity = ""
+                            neededBy = ""
+                            contact = ""
+                            other = ""
+                        } label: {
+                            Text("Clear Form")
+                        }
+                        .padding(.leading)
                         HStack{
                             TextField("Organization Name", text: $orgName)
                                 .padding(.leading)
@@ -152,7 +167,7 @@ struct FormView: View {
                                 .background(Color.offWhite)
                         }
                         .padding(.leading)
-                        Spacer()
+                
                     }
                     Spacer()
                     HStack{
@@ -221,25 +236,22 @@ struct FormView: View {
                 .shadow(radius: 15)
                 .padding()
                 
-                
-                
             }
             .toolbar{
                 ToolbarItemGroup(placement: .status) {
                     NavigationLink(destination: ContentView()) {
-                        Image(systemName: "house.fill" )
+                        Text("Home").foregroundColor(.eggplant)
                     }
                     NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
-                        Text("Form")
+                        Text("New Post").foregroundColor(.eggplant)
                     }
                     NavigationLink(destination: CommunityView(posts: $testPost)){
-                        Text("Community")
+                        Text("Community").foregroundColor(.eggplant)
                     }
                 }
             }
-            .toolbarBackground(
-               Color.offWhite,
-               for: .navigationBar)
+            .toolbarBackground(.hidden, for: .navigationBar)
+            
             
         }
         

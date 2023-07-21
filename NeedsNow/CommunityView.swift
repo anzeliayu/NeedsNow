@@ -12,6 +12,7 @@ struct CommunityView: View {
     
     var body: some View {
         NavigationStack {
+
             List(posts) { post in
                 NavigationLink(destination: expandedView(card: post)) {
                     PostCard(post: post)
@@ -19,21 +20,22 @@ struct CommunityView: View {
                 .listRowBackground(Color.offWhite)
                 
             }
-
+            
             .background(Color.lightGreen)
             .scrollContentBackground(.hidden)
          
         }
+        
         .toolbar{
             ToolbarItemGroup(placement: .status) {
                 NavigationLink(destination: ContentView()) {
-                    Image(systemName: "house.fill" )
+                    Text("Home").foregroundColor(.eggplant)
                 }
                 NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
-                    Text("Form")
+                    Text("New Post").foregroundColor(.eggplant)
                 }
                 NavigationLink(destination: CommunityView(posts: .constant(Post.sampleData))){
-                    Text("Community")
+                    Text("Community").foregroundColor(.eggplant)
                 }
             }
 

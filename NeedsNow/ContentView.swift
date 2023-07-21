@@ -26,9 +26,10 @@ struct ContentView: View {
                         .fontWeight(.heavy)
                         .padding()
                         .offset(y:10)
+                        .foregroundColor(.eggplant)
                     
                     Button {
-                        navigateToForm = true
+                        
                         navigateToForm = true
                     } label: {
                         Text("New Form")
@@ -43,6 +44,7 @@ struct ContentView: View {
                     .padding(.top, 5.0)
                     .padding()
                     .controlSize(.large)
+                    .navigationBarBackButtonHidden(true)
                     
                     Button {
                         navigateToCommunity = true
@@ -57,27 +59,29 @@ struct ContentView: View {
                     .navigationDestination(isPresented: $navigateToCommunity) {
                         CommunityView(posts: .constant(Post.sampleData))
                     }
+                    .navigationBarBackButtonHidden(true)
                     Spacer()
                     
                     
                 }
-            )
+            ) /*
              .toolbar{
                  ToolbarItemGroup(placement: .status) {
                      NavigationLink(destination: ContentView()) {
-                         Image(systemName: "house.fill" )
+                         Image(systemName: "house.fill" ).foregroundColor(.eggplant)
                      }
                      NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
-                         Text("Form")
+                         Text("Form").foregroundColor(.eggplant)
                      }
                      NavigationLink(destination: CommunityView(posts: .constant(Post.sampleData))){
-                         Text("Community")
+                         Text("Community").foregroundColor(.eggplant)
                      }
                  }
+                 
              }
              .navigationBarBackButtonHidden(true)
              
-
+            */
         }
         
     }
