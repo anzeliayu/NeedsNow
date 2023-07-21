@@ -87,7 +87,7 @@ struct expandedView: View {
         
         .toolbar{
             NavigationLink(destination: ContentView()) {
-                Text("Home")
+                Image(systemName: "house.fill")
             }
             NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
                 Text("Form")
@@ -97,6 +97,7 @@ struct expandedView: View {
             }
                            
         }
+        
 
         
     }

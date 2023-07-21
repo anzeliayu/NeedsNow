@@ -25,31 +25,25 @@ struct FormView: View {
     var body: some View {
         
         ScrollView {
-            
             ZStack{
-                
                 VStack(alignment: .leading, spacing:20){
-                    
                     HStack{
-                        //title
                         Spacer()
                             .frame(width: 125.0, height: 100.0)
                         Text("Sign Up")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .multilineTextAlignment(.center)
-                            
+                            .foregroundColor(.eggplant)
                         Spacer()
                     }
-                    
                     //Org details
                     Group {
-                        //
                         HStack{
                             TextField("Organization Name", text: $orgName)
                                 .padding(.leading)
                                 .frame(width: 320.0, height: 30.0)
-                                .border(Color.black, width: 1)
+                                .border(Color.eggplant, width: 1)
                                 .background(Color.offWhite)
                         }
                         .padding(.leading)
@@ -58,7 +52,7 @@ struct FormView: View {
                             TextField("Street Address", text: $streetAddress)
                                 .padding(.leading)
                                 .frame(width: 320.0, height: 30.0)
-                                .border(Color.black, width: 1)
+                                .border(Color.eggplant, width: 1)
                                 .background(Color.offWhite)
                         }
                         .padding(.leading)
@@ -69,20 +63,19 @@ struct FormView: View {
                                 TextField("City", text: $city)
                                     .padding(.leading)
                                     .frame(width: 200.0, height: 30.0)
-                                    .border(Color.black, width: 1)
+                                    .border(Color.eggplant, width: 1)
                                     .background(Color.offWhite)
                                     .padding(.leading)
                                     .frame(height: 40.0)
                                 TextField("State", text: $state)
                                     .padding(.leading)
                                     .frame(width: 90.0, height: 30.0)
-                                    .border(Color.black, width: 1)
+                                    .border(Color.eggplant, width: 1)
                                     .background(Color.offWhite)
                                     .padding()
                                     .frame(height: 40.0)
                             }
                         }
-                        
                             Group {
                                 VStack {
                                     ForEach(items.indices, id: \.self) { index in
@@ -90,7 +83,7 @@ struct FormView: View {
                                         TextField("Item needed, Quantity", text: $items[index])
                                             .padding(.leading)
                                             .frame(width: 320.0, height: 30.0)
-                                            .border(Color.black, width: 1)
+                                            .border(Color.eggplant, width: 1)
                                             .background(Color.offWhite)
                                             .padding(.leading)
                                             .frame(height: 40.0)
@@ -135,7 +128,7 @@ struct FormView: View {
                             TextField("DD/MM/YYYY", text: $neededBy)
                                 .padding(.leading)
                                 .frame(width: 320.0, height: 30.0)
-                                .border(Color.black, width: 1)
+                                .border(Color.eggplant, width: 1)
                                 .background(Color.offWhite)
                         }
                         .padding(.leading)
@@ -144,7 +137,7 @@ struct FormView: View {
                             TextField("Phone Number", text: $contact)
                                 .padding(.leading)
                                 .frame(width: 320.0, height: 30.0)
-                                .border(Color.black, width: 1)
+                                .border(Color.eggplant, width: 1)
                                 .background(Color.offWhite)
                         }
                         .padding(.leading)
@@ -153,7 +146,7 @@ struct FormView: View {
                             TextField("Other Info", text: $other)
                                 .padding(.leading)
                                 .frame(width: 320.0, height: 90.0)
-                                .border(Color.black, width: 1)
+                                .border(Color.eggplant, width: 1)
                                 .background(Color.offWhite)
                         }
                         .padding(.leading)
@@ -225,7 +218,7 @@ struct FormView: View {
             }
             .toolbar{
                 NavigationLink(destination: ContentView()) {
-                    Text("Home")
+                    Image(systemName: "house.fill" )
                 }
                 NavigationLink(destination: FormView(newPost: Post(orgName: "", streetAddress: "", city: "", state: "", items: [""], neededBy: "", contact: "", other: ""))) {
                     Text("Form")
@@ -235,16 +228,20 @@ struct FormView: View {
                 }
                                
             }
-
+            .toolbarBackground(
+               Color.offWhite,
+               for: .navigationBar)
             
         }
+        
+        
         .background(Color.tan)
         .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
         
     }
     
+    
 }
-
 
 
 struct FormView_Previews: PreviewProvider {
